@@ -4,6 +4,39 @@ var http = require('http');
 var express = require("express");
 var app = express();
 
+app.get('/api/:pin/direction', function(req, res) {
+	var df = '/sys/class/gpio/gpio' + req.params.pin + '/direction';
+	fs.stat(df, function(err, stats) {
+		if(err === null)
+		{
+			fs.readFile(df, 'utf8', function (err, data) { 
+				if(err === null) 
+				{
+					res.json({
+						ok: true,
+						error: null,
+						value: data.slice(0, -1),
+					});
+				}
+				else
+				{
+					res.json({
+						ok: false,
+						error: err,
+					});
+				}
+			});
+		}
+		else
+		{
+			res.json({
+				ok: false,
+				error: err,
+			});
+		}
+	});
+});
+
 app.get('/api/:pin/direction/:value', function(req, res) {
 	var df = '/sys/class/gpio/gpio' + req.params.pin + '/direction';
 	fs.stat(df, function(err, stats) {
@@ -22,6 +55,39 @@ app.get('/api/:pin/direction/:value', function(req, res) {
 					error: 'Invalid direction, must be in/out',
 				});
 			}
+		}
+		else
+		{
+			res.json({
+				ok: false,
+				error: err,
+			});
+		}
+	});
+});
+
+app.get('/api/:pin/value', function(req, res) {
+	var df = '/sys/class/gpio/gpio' + req.params.pin + '/value';
+	fs.stat(df, function(err, stats) {
+		if(err === null)
+		{
+			fs.readFile(df, 'utf8', function (err, data) { 
+				if(err === null) 
+				{
+					res.json({
+						ok: true,
+						error: null,
+						value: data.slice(0, -1),
+					});
+				}
+				else
+				{
+					res.json({
+						ok: false,
+						error: err,
+					});
+				}
+			});
 		}
 		else
 		{
