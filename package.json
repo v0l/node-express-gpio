@@ -1,0 +1,23 @@
+{
+  "name": "gpioapi",
+  "version": "0.0.1",
+  "description": "GPIO REST API",
+  "main": "gpio.js",
+  "dependencies": {
+    "express": "~4.13.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "nope"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/v0l/node-express-gpio"
+  },
+  "author": "V01",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/v0l/node-express-gpio/issues"
+  },
+  "homepage": "https://github.com/v0l/node-express-gpio"
+}
